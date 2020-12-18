@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<style>
+    #map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Наши контакты</h1>
+    <div class="row">
+        <div class="col-1"></div>
+        
+        <div class="col-10 d-flex ">
+            <div class="row justify-content-center">
+                <div class="col-12 border bg-light my-3 py-3">
+                    <div class="d-flex justify-content-around py-2">
+                        <span>
+                            Название организации :
+                        </span>
+                        <span style="font-weight: bold;">{{contacts.name}}</span>
+                    </div>
+                    <div class="d-flex justify-content-around py-2">
+                        <span>
+                            Номер телефона :
+                        </span>
+                        <span style="font-weight: bold;">{{contacts.phone_number}}</span>
+                    </div>
+                    <div class="d-flex justify-content-around py-2">
+                        <span>
+                            Почтовый ящик :
+                        </span>
+                        <span style="font-weight: bold;">{{contacts.email}}</span>
+                    </div>
+                   
+                </div>
+                <div class="col-12 mb-5">
+                    <h6>Наш адрес: {{contacts.adress}}</h6>
+                    <!--The div element for the map -->
+                    <div id="map"></div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<!-- <script>
+    function myMap() {
+    var mapProp= {
+      center:new google.maps.LatLng(56.339981, 37.512416),
+      zoom:17,
+    };
+
+
+    var marker = new google.maps.Marker({position: myCenter});
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    marker.setMap(map);
+    
+    }
+    </script> -->
+    <script>
+        // Initialize and add the map
+        function initMap() {
+          // The location of Uluru
+          const uluru = { lat: 56.339981, lng: 37.512416 };
+          // The map, centered at Uluru
+          const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 17,
+            center: uluru,
+          });
+          // The marker, positioned at Uluru
+          const marker = new google.maps.Marker({
+            position: uluru,
+            map: map,
+          });
+        }
+      </script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxWx_-vMVrQX0iM3HBJON7B7EeLbbyoGU&callback=initMap&libraries=&v=weekly"
+    defer
+  ></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=&callback=myMap"></script> -->
+{% endblock %}

@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section class="ftco-section contact-section create-story">
+        <div class="container">
+            <div class="row block-9 justify-content-center">
+                <div class="col-md-6 order-md-last d-flex  border mb-4 mr-1">
+                    <div class="row bg-light p-5">
+                        <div class="col-12">
+                            <div class="navbar-brand center py-4" ><span class="text-primary py-4">Информация о заказе :</span></div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between">
+                            <div class="p-0">
+                                <span>Автомобиль :</span>
+                            </div>
+                            <div class="p-0">
+                                <span class="car">Киа Рио 2015</span>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between">
+                            <div>
+                                <span>Каробка :</span>
+                            </div>
+                            <div>
+                                <span class="transmission">Механика</span>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between">
+                            <div>
+                                <span>Тип топливо :</span>
+                            </div>
+                            <div>
+                                <span class="fuel">Бензин</span>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between">
+                            <div>
+                                <span>Стоимость аренды(за день) :</span>
+                            </div>
+                            <div>
+                                <span class="price-for-day">1500 рублей</span>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between">
+                            <div>
+                                <span>Срок аренды :</span>
+                            </div>
+                            <div>
+                                <span class="days">5 дней</span>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between">
+                            <div>
+                                <span>Дата(от - до) :</span>
+                            </div>
+                            <div>
+                                <span class="dates">12.12.2020 - 17.12.2020</span>
+                            </div>
+                        </div>
+                        <div class="col-12 d-flex justify-content-between">
+                            <div>
+                                <span>Итого к оплате :</span>
+                            </div>
+                            <div>
+                                <span class="all-price">7500 рублей</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 order-md-last d-flex border mb-4 bg-light pl-1">
+                    <form action="" method="POST" enctype="multipart/form-data" class=" p-5 contact-form">
+                        <div class="navbar-brand center py-4" ><span class="text-primary py-4">Заполняйте для обратной связи с вами.</span></div>
+                        {% csrf_token %}
+                        {{form.non_field_errors}}
+                        <input class="hidden-input" type="hidden" name="all-data" value="" id="">
+                        {% for field in form %}
+                        {% if field.name == 'passport_first' %}
+                        <div class="form-group py-2">
+                            <span>Пасспорт(первая страница с фото)</span>
+                            {{field}}
+                            {{field.errors}}
+                        </br><small>*не важно</small>
+                        </div>
+                        {% elif field.name == 'passport_second' %}
+                        <div class="form-group py-2">
+                            <span>Пасспорт(вторая страница с регистрацией)</span>
+                            {{field}}
+                            {{field.errors}}
+                        </br><small>*не важно</small>
+                        </div>
+                        {% elif field.name == 'driver_lisense_first' %}
+                        <div class="form-group py-2">
+                            <span>Пасспорт(вод. уд. страница с фото)</span>
+                            {{field}}
+                            {{field.errors}}
+                        </br><small>*не важно</small>
+                        </div>
+                        {% elif field.name == 'driver_lisense_second' %}
+                        <div class="form-group py-2">
+                            <span>Пасспорт(вод. уд. след. страница)</span>
+                            {{field}}
+                            {{field.errors}}
+                        </br><small>*не важно</small>
+                        </div>
+                        {% else %}
+                        <div class="form-group">
+                            {{field}}
+                            {{field.errors}}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                        <!-- <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Title">
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="10" class="form-control" placeholder="Description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="" id="">
+                                    <option value="0">Select category</option>
+                                    <option value="1">-----</option>
+                                
+                                </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="file">
+                        </div> -->
+                        <div class="form-group py-2">
+                            <input type="submit" value="Арендовать" class="btn btn-primary py-3 px-5 w-100">
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+    {% block js %}
+    <script src="{% static 'js/order.js' %}"></script>
+    {% endblock %}

@@ -1,0 +1,12 @@
+.venv/
+db.sqlite3
+.idea/
+contributors.txt
+*.pyc
+.git/
+.DS_STORE
+pgadmin/
+pgdb/
+pgdb2/
+postgresdb/
+*.sql

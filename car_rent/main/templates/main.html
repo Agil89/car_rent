@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container p-4 ">
+    <div class="row justify-content-center">
+        <div class=" col-xl-3 col-12">
+            <h4>Фильтры</h4>
+            <div class="row ">
+
+                <div class="col-xl-12  col-lg-5 col-12">
+                    <div class="row">
+                        <div class="col-12 border p-2 my-1">
+                            <div class="py-2">
+                                <h6 class="bolder-words">По цене : </h6>
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text min-span" id="inputGroup-sizing-sm">min</span>
+                                </div>
+                                <input type="text" class="form-control min-price" aria-label="Small"
+                                    aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                            <div class="input-group input-group-sm mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text max-span " id="inputGroup-sizing-sm">max</span>
+                                </div>
+                                <input type="text" class="form-control max-price" aria-label="Small"
+                                    aria-describedby="inputGroup-sizing-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-12 mr-lg-2 mb-lg-2 col-lg-5 col-12">
+                    <div class="row">
+                        <div class="col-12  p-2 my-1 d-flex flex-column">
+                            <h6 class="bolder-words">Выберите марку :</h6>
+                            
+                            <select class="border-0 bg-primary text-white p-2 for-selection" name="cars" id="cars">
+                                <option class="text-white bg-primary marka" >.... 
+                                </option>
+                                {% for marka in markas %}
+                                <option class="text-white bg-primary marka" value="{{marka.pk}}">{{marka.marka}}
+                                </option>
+                                {% endfor %}
+
+                            </select>
+
+                        </div>
+                        <div class="col-12  p-2 my-1 d-flex flex-column">
+                            <h6 class="bolder-words">Выберите модель :</h6>
+                            <select class="border-0 bg-primary text-white p-2 model-select" name="cars" id="cars">
+
+                                <option class="text-white bg-primary marka">Сначало выберите марку</option>
+                            </select>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-5 col-12">
+                    <div class="row">
+                        <div class="col-12 border p-2 my-1">
+                            <div class="py-2">
+                                <h6 class="bolder-words">Класс автомобиля </h6>
+                            </div>
+                            <div class="">
+                                {% for class in classes %}
+                                <div class="ally" id="amenities-hotel">
+
+                                    <label class="containerr"><span class="pl-3 choose-types">
+                                            {{class.name}}
+                                        </span>
+                                        <input type="radio" class="checked-inputs feature" name="radio">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 col-lg-5 col-12">
+                    <div class="row">
+                        <div class="col-12 border p-2 my-1">
+                            <div class="py-2">
+                                <h6 class="bolder-words">Аренда под такси </h6>
+                            </div>
+                            <div class="">
+                                <div class="ally" id="amenities-hotel">
+
+                                    <label class="containerr"><span class="pl-3 choose-types">Да
+                                        </span>
+                                        <input type="radio" class="checked-inputs types" name="radios">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                   
+                                </div>
+                                <div class="ally" id="amenities-hotel">
+
+                                   
+                                    <label class="containerr"><span class="pl-3 choose-types">Нет
+                                        </span>
+                                        <input type="radio" class="checked-inputs types" name="radios">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-xl-9 col-12 main-col">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="baku-125" style="font-weight: bold;">Арендуйте у нас : </h4>
+                </div>
+            </div>
+            <div class="removed-data">
+            {% for car in cars %}
+            
+                <div class="row main-div">
+                    <div class="col-12 ">
+                        <div class="card mb-3 p-3"
+                            style="max-width: 100%; height: 90%;border-color: #5bbaff;box-shadow: 0 0 10px #5bbaff;background-color: #ebf3ff;">
+                            <div class="row no-gutters">
+                                <div class="col-md-4 col-sm-6 col-lg-3 col-12">
+                                    <img class="content-image card-img" src="{{car.main_image.url}}">
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-lg-6 col-12">
+                                    <div class="card-body">
+                                        <h6 class="card-title text-primary mb-1" style="font-weight: bold;">
+                                            {{car.marka}} {{car.model}} ({{car.fuel}})</h6>
+                                        <div class="d-flex align-items-center mb-3 ">
+
+                                        </div>
+                                        <p class="card-text" style="font-size: 12px;line-height: 18px;">
+                                            {{car.car_year}} model car</p>
+                                        <p class="card-text"><small class="text-muted">Best car</small>
+                                        </p>
+                                        <span class="d-sm-block d-md-none" style="font-size: 16px;">Price
+                                            for night
+                                            {{car.price}} руб.</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-lg-3 d-none d-md-block col-12">
+                                    <div class="row flex-column justify-content-between h-100 ">
+                                        <!-- <div class=" d-flex align-items-center justify-content-end p-2 ">
+                                            <div class="d-flex flex-column mr-2" style="line-height:5px;">
+                                                <h6>Very good</h6>
+                                                <small>75 Reviews</small>
+                                            </div>
+                                            <div class="rating-count">{{hotel.rating}}</div>
+                                        </div> -->
+                                        <div class=" d-flex flex-column justify-content-end h-100 px-2">
+                                      
+                                            <span class="text-right mb-2" style="font-size: 16px;">Price for night
+                                                {{car.price}} руб.</span>
+                                                <a href="{% url 'main:car-detail' car.id %}" type="button"
+                                                class="btn btn-danger slugs-anchor"
+                                                style="font-size:14px; color: white;">Арендовать</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-12 p-sm-3  p-md-2 d-none d-sm-block">
+                                    <div class="row justify-content-end ">
+                                        <a href="{% url 'main:car-detail' car.id %}" type="button"
+                                            class="btn btn-danger slugs-anchor w-25"
+                                            style="font-size:14px; color: white;">Арендовать</a>
+                                    </div>
+                                </div> -->
+                                <div class="col-12 p-sm-3  pb-4 pl-4 d-block d-sm-none ">
+                                    <div class="row  ">
+                                        <a href="" type="button" class="btn btn-danger slugs-anchor w-25"
+                                            style="font-size:14px; color: white;">Арендовать</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            {% endfor %}
+        </div>
+
+            <div class="row js-pagination d-flex justify-content-center align-items-center">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+
+
+
+
+{% block js %}
+
+{% endblock %}
