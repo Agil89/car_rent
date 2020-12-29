@@ -8,7 +8,7 @@ $(document).on('change', '.for-selection', function () {
     
     console.log(marka_id)
     $.ajax({
-        url: 'http://127.0.0.1:8000/api/v1.0/cars/models/',
+        url: '/api/v1.0/cars/models/',
         method: "GET",
         data: {
             'marka_id': marka_id,
@@ -69,7 +69,7 @@ document.onclick = function (e) {
 function loadAllData(data) {
     console.log(data)
     $.ajax({
-        url: 'http://127.0.0.1:8000/api/v1.0/cars/cars/',
+        url: '/api/v1.0/cars/cars/',
         method: "GET",
         data: data,
         success: function (response) {
@@ -77,7 +77,8 @@ function loadAllData(data) {
             document.querySelector('.removed-data').innerHTML = ''
             // console.log(response.page_range)
             for (car of response.filtered_cars) {
-                document.querySelector('.removed-data').innerHTML +=`<div class="row main-div">
+                document.querySelector('.removed-data').innerHTML +=`
+                <div class="row main-div">
                 <div class="col-12 ">
                     <div class="card mb-3 p-3"
                         style="max-width: 100%; height: 90%;border-color: #5bbaff;box-shadow: 0 0 10px #5bbaff;background-color: #ebf3ff;">
@@ -88,12 +89,11 @@ function loadAllData(data) {
                             <div class="col-md-4 col-sm-6 col-lg-6 col-12">
                                 <div class="card-body">
                                     <h6 class="card-title text-primary mb-1" style="font-weight: bold;">
-                                        ${car.marka.marka} ${car.model.model}</h6>
+                                    ${car.marka.marka} ${car.model.model} (${car.fuel.name})</h6>
                                     <div class="d-flex align-items-center mb-3 ">
-
                                     </div>
                                     <p class="card-text" style="font-size: 12px;line-height: 18px;">
-                                        ${car.car_year.year} model car</p>
+                                    ${car.car_year.year} model car</p>
                                     <p class="card-text"><small class="text-muted">Best car</small>
                                     </p>
                                     <span class="d-sm-block d-md-none" style="font-size: 16px;">Price
@@ -102,53 +102,44 @@ function loadAllData(data) {
                                 </div>
                             </div>
                             <div class="col-md-4 col-sm-6 col-lg-3 d-none d-md-block col-12">
-                                <div class="row flex-column justify-content-between ">
-                                    <div class=" d-flex align-items-center justify-content-end p-2 ">
-                                        <div class="d-flex flex-column mr-2" style="line-height:5px;">
-                                            <h6>Very good</h6>
-                                            <small>75 Reviews</small>
-                                        </div>
-                                        <div class="rating-count">{{hotel.rating}}</div>
-                                    </div>
-                                    <div class=" d-flex flex-column justify-content-end p-2">
-                                        <span class="text-right" style="font-size: 16px;">Price for night
+                                <div class="row flex-column justify-content-between h-100 ">
+                                    
+                                    <div class=" d-flex flex-column justify-content-end h-100 px-2">
+                                  
+                                        <span class="text-right mb-2" style="font-size: 16px;">Price for night
                                         ${car.price} руб.</span>
+                                            <a href="car-detail/${car.id}" type="button"
+                                            class="btn btn-danger slugs-anchor"
+                                            style="font-size:14px; color: white;">Арендовать</a>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-12 p-sm-3  p-md-2 d-none d-sm-block">
-                                <div class="row justify-content-end ">
-                                    <a href="car-detail/${car.id}" type="button"
-                                        class="btn btn-danger slugs-anchor w-25"
-                                        style="font-size:14px; color: white;">Арендовать</a>
                                 </div>
                             </div>
                             <div class="col-12 p-sm-3  pb-4 pl-4 d-block d-sm-none ">
                                 <div class="row  ">
-                                    <a href="" type="button" class="btn btn-danger slugs-anchor w-25"
+                                    <a href="car-detail/${car.id}" type="button" class="btn btn-danger slugs-anchor w-25"
                                         style="font-size:14px; color: white;">Арендовать</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>`
-                
+            </div>
+               `
             }
-            // document.querySelector('.old-pagi').innerHTML=''
-            // document.querySelector('.js-pagination').innerHTML=''
-            // for (var i =1;i<=response.page_range;i++){
-            //     page_numbers=document.createElement('span')
-            //     page_numbers.innerText=i
-            //     page_numbers.href=`?page=${i}`
-            //     document.querySelector('.js-pagination').appendChild(page_numbers)
-            //     page_numbers.classList.add('m-2','pagination-numbers-js')
+            document.querySelector('.old-pagi').innerHTML=''
+            document.querySelector('.js-pagination').innerHTML=''
+            for (var i =1;i<=response.page_range;i++){
+                page_numbers=document.createElement('span')
+                page_numbers.innerText=i
+                page_numbers.href=`?page=${i}`
+                document.querySelector('.js-pagination').appendChild(page_numbers)
+                page_numbers.classList.add('m-2','pagination-numbers-js')
 
-            //     page_numbers.addEventListener('click',function(){
-            //         all_data['page']=this.innerText
-            //         loadAllData(all_data)
-            //     })
-            // }
+                page_numbers.addEventListener('click',function(){
+                    all_data['page']=this.innerText
+                    loadAllData(all_data)
+                })
+            }
             
         },
         error: function (error) {

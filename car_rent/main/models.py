@@ -108,3 +108,14 @@ class AboutUs(models.Model):
 
     def __str__(self):
         return self.title
+
+class SendList(models.Model):
+    #information
+    email = models.CharField('Email',max_length=120)
+
+    class Meta:
+        verbose_name = 'Почты для заявление'
+        verbose_name_plural = 'Почты для заявление'
+
+    def __str__(self):
+        return f'{self.email}'

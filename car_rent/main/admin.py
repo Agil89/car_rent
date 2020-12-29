@@ -1,6 +1,6 @@
 from django.contrib import admin
 from main.models import CarModel,Car,CarYear,CarClass,CarMarka,Images,Transmission,\
-    Type,Fuel,OrderData,AboutUs,Contacts
+    Type,Fuel,OrderData,AboutUs,Contacts,SendList
 # Register your models here.
 admin.site.register(CarMarka)
 admin.site.register(CarModel)
@@ -12,6 +12,7 @@ admin.site.register(Fuel)
 admin.site.register(OrderData)
 admin.site.register(AboutUs)
 admin.site.register(Contacts)
+admin.site.register(SendList)
 
 class CarImages(admin.TabularInline):
     model = Images

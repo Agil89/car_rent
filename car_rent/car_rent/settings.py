@@ -156,3 +156,10 @@ else:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static')
     ]
+
+EMAIL_USE_TLS =True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'makhmudov.agil@gmail.com'
+EMAIL_HOST_PASSWORD = 'uvqqzjxuywkikerv'
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

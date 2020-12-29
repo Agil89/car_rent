@@ -8,7 +8,6 @@
 
 
 {% endblock %}
-
 {% block content %}
 
 
@@ -148,7 +147,6 @@
                                         <h6 class="card-title text-primary mb-1" style="font-weight: bold;">
                                             {{car.marka}} {{car.model}} ({{car.fuel}})</h6>
                                         <div class="d-flex align-items-center mb-3 ">
-
                                         </div>
                                         <p class="card-text" style="font-size: 12px;line-height: 18px;">
                                             {{car.car_year}} model car</p>
@@ -161,13 +159,7 @@
                                 </div>
                                 <div class="col-md-4 col-sm-6 col-lg-3 d-none d-md-block col-12">
                                     <div class="row flex-column justify-content-between h-100 ">
-                                        <!-- <div class=" d-flex align-items-center justify-content-end p-2 ">
-                                            <div class="d-flex flex-column mr-2" style="line-height:5px;">
-                                                <h6>Very good</h6>
-                                                <small>75 Reviews</small>
-                                            </div>
-                                            <div class="rating-count">{{hotel.rating}}</div>
-                                        </div> -->
+                                        
                                         <div class=" d-flex flex-column justify-content-end h-100 px-2">
                                       
                                             <span class="text-right mb-2" style="font-size: 16px;">Price for night
@@ -178,13 +170,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- <div class="col-12 p-sm-3  p-md-2 d-none d-sm-block">
-                                    <div class="row justify-content-end ">
-                                        <a href="{% url 'main:car-detail' car.id %}" type="button"
-                                            class="btn btn-danger slugs-anchor w-25"
-                                            style="font-size:14px; color: white;">Арендовать</a>
-                                    </div>
-                                </div> -->
                                 <div class="col-12 p-sm-3  pb-4 pl-4 d-block d-sm-none ">
                                     <div class="row  ">
                                         <a href="" type="button" class="btn btn-danger slugs-anchor w-25"
@@ -198,10 +183,46 @@
             
             {% endfor %}
         </div>
+        <div class="row mt-5 old-pagi">
+            <div class="col text-center">
+                <div class="block-27 d-flex justify-content-center align-items-center">
+                    {% if page_obj.has_previous %}
+                    <a class="prev-icon" style="color: #b0ddf2;"
+                        href="?page={{ page_obj.previous_page_number }}{% if sortBy %}&sortBy={{ sortBy }}{% endif %}">
+                        <i class='fas fa-angle-left previous-icon mr-2' alt="arrow" style='font-size:24px'></i>
+                    </a>
+                    {% endif %}
+                    {% if page_range|length > 1 %}
+                    <div class="page-numbers">
+                        {% for page_number in page_range %}
+                        {% if page_number == page_obj.number %}
+                        <a class="active mr-2">
+                            <span>{{ page_number }}</span>
+                        </a>
+                        {% else %}
+                        <a class="page mr-2 deactive-page-numbers mb-2"
+                            style="text-decoration: none;color: rgb(145, 145, 255);"
+                            href="?page={{ page_number }}{% if sortBy %}&sortBy={{ sortBy }}{% endif %}">
+                            <span class="number-span">{{ page_number }}</span>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                    <a class="next-page ml-2" style="color: #b0ddf2;"
+                        href="?page={{ page_obj.next_page_number }}{% if sortBy %}&sortBy={{ sortBy }}{% endif %}">
+                        <i class=' fas fa-angle-right' style='font-size:24px' alt="arrow" class="next-icon"></i>
 
-            <div class="row js-pagination d-flex justify-content-center align-items-center">
+                    </a>
+                    {% endif %}
 
+                </div>
             </div>
+        </div>
+        <div class="row js-pagination d-flex justify-content-center align-items-center">
+
+        </div>
         </div>
     </div>
 </div>
@@ -210,7 +231,6 @@
 
 
 {% endblock %}
-
 
 
 

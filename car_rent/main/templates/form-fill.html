@@ -4,8 +4,8 @@
     <section class="ftco-section contact-section create-story">
         <div class="container">
             <div class="row block-9 justify-content-center">
-                <div class="col-md-6 order-md-last d-flex  border mb-4 mr-1">
-                    <div class="row bg-light p-5">
+                <div class="col-md-6 order-md-last d-flex   mb-4  bg-white" style="padding:50px !important">
+                    <div class="row bg-light p-5" style="border: 1px solid gray;">
                         <div class="col-12">
                             <div class="navbar-brand center py-4" ><span class="text-primary py-4">Информация о заказе :</span></div>
                         </div>
@@ -67,14 +67,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 order-md-last d-flex border mb-4 bg-light pl-1">
-                    <form action="" method="POST" enctype="multipart/form-data" class=" p-5 contact-form">
+                <div class="col-md-6 order-md-last d-flex  mb-4 bg-white pl-1" style="padding:50px !important">
+                    <form action="" style="border: 1px solid gray;" method="POST" enctype="multipart/form-data" class=" p-5 contact-form bg-light">
                         <div class="navbar-brand center py-4" ><span class="text-primary py-4">Заполняйте для обратной связи с вами.</span></div>
                         {% csrf_token %}
                         {{form.non_field_errors}}
                         <input class="hidden-input" type="hidden" name="all-data" value="" id="">
                         {% for field in form %}
                         {% if field.name == 'passport_first' %}
+                        <h6 class="text-primary">Для подготовление договора аренды до вашего приезда прикрепляйте сканы нужных документов.</h6>
                         <div class="form-group py-2">
                             <span>Пасспорт(первая страница с фото)</span>
                             {{field}}
