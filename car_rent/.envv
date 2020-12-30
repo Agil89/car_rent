@@ -3,7 +3,7 @@ POSTGRES_USER=carRent_name
 POSTGRES_PASSWORD=car_rent123
 POSTGRES_HOST=postgres
 POSTGRES_PORT=5432
-VIRTUAL_HOST=34.72.0.144,localhost
+VIRTUAL_HOST=www.tachrent.ru,tachrent.ru,34.72.0.144,localhost
 VIRTUAL_PORT=8000
 DEBUG=False
 
