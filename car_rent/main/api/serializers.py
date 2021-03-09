@@ -47,7 +47,7 @@ class CarSerializer(serializers.ModelSerializer):
     fuel = FuelSerializer()
     type= TypeSerializer()
     car_class = CarClassSerializer()
-
+    images = serializers.RelatedField(many=True)
 
     class Meta:
         model = Car
@@ -55,10 +55,11 @@ class CarSerializer(serializers.ModelSerializer):
                   'price','fuel','type','car_class','seats','comment',
                   'is_published','taxi','images')
 
+        # def get_images(self,obj):
+        #     return ImageSerializer(obj.images,read_only=True).data
 
 class ImageSerializer(serializers.ModelSerializer):
     carr =CarSerializer()
-
     class Meta:
         model = Images
         fields = ('carr','images')
