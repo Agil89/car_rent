@@ -39,6 +39,12 @@ class CarClassSerializer(serializers.ModelSerializer):
         model = CarClass
         fields = ('id','name',)
 
+#
+# class ImageSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Images
+#         fields = ('carr','image')
+
 class CarSerializer(serializers.ModelSerializer):
     marka = CarMarkaSerializer()
     model = CarModelSerializer()
@@ -47,19 +53,15 @@ class CarSerializer(serializers.ModelSerializer):
     fuel = FuelSerializer()
     type= TypeSerializer()
     car_class = CarClassSerializer()
-    images = serializers.RelatedField(many=True)
+    images = serializers.StringRelatedField(many=True)
 
+    # image = ImageSerializer(many=True)
+    # images = serializers.PrimaryKeyRelatedField(many=True,)
     class Meta:
         model = Car
         fields = ('id','marka','model','car_year','transmission','main_image',
                   'price','fuel','type','car_class','seats','comment',
                   'is_published','taxi','images')
-
+        #
         # def get_images(self,obj):
         #     return ImageSerializer(obj.images,read_only=True).data
-
-class ImageSerializer(serializers.ModelSerializer):
-    carr =CarSerializer()
-    class Meta:
-        model = Images
-        fields = ('carr','images')
