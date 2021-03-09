@@ -70,6 +70,8 @@ class Car(models.Model):
         return f'{self.marka.marka} {self.model.model} {self.car_year.year}'
 
 
+
+
 class Images(models.Model):
     carr = models.ForeignKey(Car,on_delete=models.CASCADE, verbose_name='Car',related_name='images')
     images = models.ImageField('Допольнительные фотографии', upload_to='images/allImg')

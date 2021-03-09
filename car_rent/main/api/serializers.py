@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from main.models import CarMarka,CarModel,CarYear,Transmission,Fuel,Type,\
-    CarClass,Car
+    CarClass,Car,Images
 
 
 class CarMarkaSerializer(serializers.ModelSerializer):
@@ -48,11 +48,17 @@ class CarSerializer(serializers.ModelSerializer):
     type= TypeSerializer()
     car_class = CarClassSerializer()
 
+
     class Meta:
         model = Car
         fields = ('id','marka','model','car_year','transmission','main_image',
                   'price','fuel','type','car_class','seats','comment',
-                  'is_published','taxi',)
+                  'is_published','taxi','images')
 
 
+class ImageSerializer(serializers.ModelSerializer):
+    carr =CarSerializer()
 
+    class Meta:
+        model = Images
+        fields = ('carr','images')
