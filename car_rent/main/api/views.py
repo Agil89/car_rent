@@ -3,9 +3,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from main.models import CarModel,Car
 from main.api.serializers import CarModelSerializer,CarSerializer
-import json
 import math
-
+from main.api.my_paginations import PagePagination
 
 class CarListView(APIView):
     def get(self,request):
@@ -30,7 +29,6 @@ class CarListView(APIView):
             filtered_cars=filtered_cars.filter(taxi=False)
 
 
-        print('AAAAAAAAAAAAAA',filtered_cars)
         car_count = filtered_cars.count()
         car_count_for_each_page = 6
         page_count = math.ceil(car_count/car_count_for_each_page)
@@ -57,3 +55,7 @@ class ModelListView(APIView):
                     'models': serialized_models.data,
                 })
 
+class AllCarsListView(ListAPIView):
+    queryset = Car.objects.all()
+    serializer_class = CarSerializer
+    pagination_class = PagePagination

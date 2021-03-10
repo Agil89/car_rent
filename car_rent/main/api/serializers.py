@@ -46,6 +46,7 @@ class CarClassSerializer(serializers.ModelSerializer):
 #         fields = ('carr','image')
 
 class CarSerializer(serializers.ModelSerializer):
+
     marka = CarMarkaSerializer()
     model = CarModelSerializer()
     car_year = CarYearSerializer()
@@ -58,6 +59,7 @@ class CarSerializer(serializers.ModelSerializer):
     # image = ImageSerializer(many=True)
     # images = serializers.PrimaryKeyRelatedField(many=True,)
     class Meta:
+
         model = Car
         fields = ('id','marka','model','car_year','transmission','main_image',
                   'price','fuel','type','car_class','seats','comment',
