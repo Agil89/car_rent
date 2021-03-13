@@ -67,8 +67,9 @@ class OrderCreateView(APIView):
         # data = request.POST
         data2 = request.body
         print(data2)
-        print(data2['userName'])
-        print(data2['userSurname'])
-        print(data2['phoneNumber'])
-        print(data2['orderData'])
+        request.body["orderData"]
+        print(request.body["userName"])
+        print(request.body["userSurname"])
+        print(request.body["phoneNumber"])
+        print(request.body["orderData"])
         print('its ok')
