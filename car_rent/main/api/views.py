@@ -59,3 +59,13 @@ class AllCarsListView(ListAPIView):
     queryset = Car.objects.all()
     serializer_class = CarSerializer
     pagination_class = PagePagination
+
+
+class OrderCreateView(APIView):
+
+    def post(self,request):
+        data = request.POST
+        print(data.get('userName'))
+        print(data.get('userSurname'))
+        print(data.get('phoneNumber'))
+        print(data.get('orderData'))
