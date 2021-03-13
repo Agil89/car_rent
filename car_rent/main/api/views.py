@@ -5,6 +5,7 @@ from main.models import CarModel,Car
 from main.api.serializers import CarModelSerializer,CarSerializer
 import math
 from main.api.my_paginations import PagePagination
+import json
 
 class CarListView(APIView):
     def get(self,request):
@@ -65,11 +66,13 @@ class OrderCreateView(APIView):
 
     def post(self,request):
         # data = request.POST
-        data2 = request.body
-        print(data2)
-        request.body["orderData"]
-        print(request.body["userName"])
-        print(request.body["userSurname"])
-        print(request.body["phoneNumber"])
-        print(request.body["orderData"])
+        form_data = json.loads(request.body.decode())
+        print(form_data)
+        # data2 = request.body
+        # print(data2)
+        # request.body["orderData"]
+        # print(request.body["userName"])
+        # print(request.body["userSurname"])
+        # print(request.body["phoneNumber"])
+        # print(request.body["orderData"])
         print('its ok')
