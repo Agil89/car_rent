@@ -64,8 +64,9 @@ class AllCarsListView(ListAPIView):
 class OrderCreateView(APIView):
 
     def post(self,request):
-        data = request.POST
-        print(data)
+        # data = request.POST
+        data2 = request.body
+        print(data2)
         # print(data.get('userName'))
         # print(data.get('userSurname'))
         # print(data.get('phoneNumber'))
