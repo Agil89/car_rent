@@ -1,7 +1,7 @@
 from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from main.models import CarModel,Car
+from main.models import CarModel,Car,OrderData
 from main.api.serializers import CarModelSerializer,CarSerializer
 import math
 from main.api.my_paginations import PagePagination
@@ -70,6 +70,12 @@ class OrderCreateView(APIView):
         print(form_data)
         print(form_data['userName'])
         print(form_data['userSurname'])
+        order = OrderData(name=form_data['userName'],
+                          surname=form_data['userSurname'],
+                          phone_number=form_data['phoneNumber'],
+                          order_data=form_data['orderData'])
+        order.save()
+
         # data2 = request.body
         # print(data2)
         # request.body["orderData"]
