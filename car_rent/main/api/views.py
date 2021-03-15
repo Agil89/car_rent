@@ -9,9 +9,11 @@ import json
 
 class CarListView(APIView):
     def get(self,request):
-        mobileData = json.loads(request.body.decode())
-        print(mobileData)
+        # mobileData = json.loads(request.body.decode())
+        # print(mobileData)
+
         data = request.GET
+        print(data)
         car_model=data.get('model_id')
         car_class = data.get('checked_class')
         car_status = data.get('checked_status')
