@@ -1,8 +1,8 @@
 from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from main.models import CarModel,Car,OrderData
-from main.api.serializers import CarModelSerializer,CarSerializer
+from main.models import CarModel,Car,OrderData,CarClass
+from main.api.serializers import CarModelSerializer,CarSerializer,CarClassSerializer
 import math
 from main.api.my_paginations import PagePagination
 import json
@@ -88,3 +88,14 @@ class OrderCreateView(APIView):
         # print(request.body["phoneNumber"])
         # print(request.body["orderData"])
         print('its ok')
+
+class CarClassesView(ListAPIView):
+    queryset = CarClass.objects.all()
+    serializer_class = CarClassSerializer
+
+    def get(self,request):
+        queryset = self.get_queryset()
+        serializer = CarClassSerializer(queryset,many=True)
+        return Response({
+            'classes': serializer.data,
+        })
