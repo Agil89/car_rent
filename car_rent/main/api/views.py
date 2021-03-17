@@ -1,8 +1,9 @@
 from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from main.models import CarModel,Car,OrderData,CarClass
-from main.api.serializers import CarModelSerializer,CarSerializer,CarClassSerializer
+from main.models import CarModel,Car,OrderData,CarClass,CarMarka
+from main.api.serializers import CarModelSerializer,CarSerializer,CarClassSerializer,\
+    CarMarkaSerializer
 import math
 from main.api.my_paginations import PagePagination
 import json
@@ -98,4 +99,17 @@ class CarClassesView(ListAPIView):
         serializer = CarClassSerializer(queryset,many=True)
         return Response({
             'classes': serializer.data,
+        })
+
+
+
+class CarMarkaView(ListAPIView):
+    queryset = CarMarka.objects.all()
+    serializer_class = CarMarkaSerializer
+
+    def get(self,request):
+        queryset = self.get_queryset()
+        serializer = CarMarkaSerializer(queryset,many=True)
+        return Response({
+            'allMarkas': serializer.data,
         })
