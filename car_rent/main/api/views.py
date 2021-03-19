@@ -14,8 +14,9 @@ class CarListView(APIView):
         # print(mobileData)
 
         data = request.GET
-        # class_list = request.GET['classList']
-        class_list = request.get('classList')
+        class_list = request.GET['classList']
+        print(class_list)
+        # class_list = request.get('classList')
         if class_list:
             print(class_list,'here is all classlist')
             for c in class_list:
