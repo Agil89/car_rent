@@ -31,9 +31,9 @@ class CarListView(APIView):
 
         filtered_cars = Car.objects.all()
 
-        # if class_list:
-        #     for checked_class in class_list:
-        #         filtered_cars = filtered_cars.filter(car_class=checked_class)
+        if json.loads(class_list):
+            for checked_class in json.loads(class_list):
+                filtered_cars = filtered_cars.filter(car_class__name=checked_class.name)
 
 
 
