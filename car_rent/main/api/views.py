@@ -14,15 +14,24 @@ class CarListView(APIView):
         # print(mobileData)
 
         data = request.GET
-        print(data)
+        class_list = data.getlist('classList[]')
+        for c in class_list:
+            print(c)
         car_model=data.get('model_id')
         car_class = data.get('checked_class')
         car_status = data.get('checked_status')
         minPrice = data.get('minPrice')
         maxPrice = data.get('maxPrice')
-        print(minPrice , '---------', maxPrice)
+
 
         filtered_cars = Car.objects.all()
+
+        # if class_list:
+        #     for checked_class in class_list:
+        #         filtered_cars = filtered_cars.filter(car_class=checked_class)
+
+
+
         if minPrice:
             filtered_cars=filtered_cars.filter(price__gte=minPrice).distinct()
         if maxPrice:
