@@ -15,11 +15,11 @@ class CarListView(APIView):
 
         data = request.GET
         class_list = request.GET['classList']
-        print(class_list)
+        print(json.loads(class_list))
         # class_list = request.get('classList')
         if class_list:
             print(class_list,'here is all classlist')
-            for c in class_list:
+            for c in json.loads(class_list):
                 print(c)
 
         car_model=data.get('model_id')
