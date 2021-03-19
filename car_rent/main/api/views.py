@@ -20,6 +20,8 @@ class CarListView(APIView):
         car_status = data.get('checked_status')
         minPrice = data.get('minPrice')
         maxPrice = data.get('maxPrice')
+        print(minPrice , '---------', maxPrice)
+
         filtered_cars = Car.objects.all()
         if minPrice:
             filtered_cars=filtered_cars.filter(price__gte=minPrice).distinct()
