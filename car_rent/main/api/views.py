@@ -17,10 +17,11 @@ class CarListView(APIView):
         class_list = request.GET['classList']
         print(json.loads(class_list))
         # class_list = request.get('classList')
+        all_class_list = []
         if class_list:
             print(class_list,'here is all classlist')
             for c in json.loads(class_list):
-                print(c)
+               all_class_list.append(c["name"])
 
         car_model=data.get('model_id')
         car_class = data.get('checked_class')
@@ -32,8 +33,7 @@ class CarListView(APIView):
         filtered_cars = Car.objects.all()
 
         if json.loads(class_list):
-            for checked_class in json.loads(class_list):
-                filtered_cars = filtered_cars.filter(car_class__name=checked_class["name"])
+            filtered_cars = filtered_cars.filter(car_class__name__in=all_class_list)
 
 
 
