@@ -15,8 +15,11 @@ class CarListView(APIView):
 
         data = request.GET
         class_list = data.getlist('classList[]')
-        for c in class_list:
-            print(c)
+        if class_list:
+            print(class_list,'here is all classlist')
+            for c in class_list:
+                print(c)
+
         car_model=data.get('model_id')
         car_class = data.get('checked_class')
         car_status = data.get('checked_status')
