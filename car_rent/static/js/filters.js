@@ -69,7 +69,7 @@ document.onclick = function (e) {
 function loadAllData(data) {
     console.log(data)
     $.ajax({
-        url: '/api/v1.0/cars/cars/',
+        url: 'http://34.69.142.55/api/v1.0/cars/cars/',
         method: "GET",
         data: data,
         success: function (response) {
